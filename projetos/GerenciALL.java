@@ -1,6 +1,6 @@
 import java.util.Scanner;
 
-public class GerenciALL {
+public class GerenciAll {
     public static void main(String[] args) {
         Scanner input = new Scanner(System.in);
         System.out.println("\n============== GerenciALL ==============");

@@ -1,3 +1,4 @@
+package exercicios;
 //Exercicio - Criado por Victor H Fedatto
 /* */
 

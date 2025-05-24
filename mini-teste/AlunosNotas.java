@@ -1,6 +1,6 @@
 import java.util.Scanner;
 
-public class Quest1 {
+public class AlunosNotas {
     public static void main(String[] args) {
         Scanner input = new Scanner(System.in);
         double Notas[] = new double [10];
