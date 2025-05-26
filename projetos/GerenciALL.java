@@ -13,18 +13,19 @@ public class GerenciAll {
             case 1: // Criar tarefas
                 System.out.println("\n============ Criar Tarefas ============");
                 break;
-            case 2: // Gerenciar tarefas --> Filtrar, Pesquisar, editar e excluir
+                case 2: // Gerenciar tarefas --> Filtrar, Pesquisar, editar e excluir
                 System.out.println("\n========== Gerenciar Tarefas ==========");
                 break;
-
-
-            case 3: // Fazer tarefa
+                
+                
+                case 3: // Fazer tarefa
                 System.out.println("\n============ Fazer Tarefas ============");
                 break;
-        
-
-            default: // Caso não seja um número
-                break;
+                
+                
+                default: // Caso não seja um número
+                    System.out.println("Opção inválida");
+                    break;
 
 
         } // Fecha o Switch Case
