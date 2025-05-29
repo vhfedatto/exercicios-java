@@ -28,7 +28,7 @@ public class Tarefa {
         this.status = converterStatus(statusCode);
     }
 
-    @Override
+    @Override //Sobrescrita
     public String toString() {
         return "Tarefa: " + titulo + "\nDescrição: " + descricao + "\nData: " + data + "\nStatus: " + status;
     }

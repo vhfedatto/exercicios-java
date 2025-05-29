@@ -92,7 +92,11 @@ public class GerenciAll {
                     }
                 }
 
-                case 5 -> {
+                case 4 ->{ //Ver calendário
+                    System.out.println("====== Calendário ======");
+                }
+
+                case 5 -> { //Sair do programa
                     System.out.println("Saindo...");
                     rodando = false;
                 }
