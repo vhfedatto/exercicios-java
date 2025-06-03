@@ -11,16 +11,37 @@ public class GerenciAll {
         
         String data;
         boolean rodando = true;
+        int escolha = 0;
 
         while (rodando) {
-            System.out.println("\n>>>>>>>>>>>>>> GerenciALL <<<<<<<<<<<<<<");
-            System.out.println("\n[1] Criar Tarefas\n[2] Gerenciar Tarefas\n[3] Fazer Tarefa\n[4] Calendário\n[5] Sair");
+            System.out.println("=================================================================");
+            System.out.println("  _______                             __ _______ ___     ___     ");
+            System.out.println(" |   _   .-----.----.-----.-----.----|__|   _   |   |   |   |    ");
+            System.out.println(" |.  |___|  -__|   _|  -__|     |  __|  |.  1   |.  |   |.  |    ");
+            System.out.println(" |.  |   |_____|__| |_____|__|__|____|__|.  _   |.  |___|.  |___ ");
+            System.out.println(" |:  1   |                              |:  |   |:  1   |:  1   |");
+            System.out.println(" |::.. . |                              |::.|:. |::.. . |::.. . |");
+            System.out.println(" `-------'                              `--- ---`-------`-------'");
+            System.out.println("                                                                  ");
+            System.out.println("=================================================================");
+            System.out.println("            GERENCIAMENTO DE TAREFAS  |  TERMINAL v1.0           ");
+            System.out.println("=================================================================");
+            
+            System.out.println("\n[1] Criar Tarefas\n[2] Gerenciar Tarefas\n[3] Fazer Tarefa\n[4] Sair");
             System.out.println("========================================");
-            System.out.print(">> Escolha: "); // Criar uma prevenção para erros de digitação de algo que não seja um número INT
-
-            int escolha = input.nextInt();
-            input.nextLine(); // Limpa o buffer
-
+            
+            while(true){
+                System.out.print(">> Escolha: "); // Criar uma prevenção para erros de digitação de algo que não seja um número INT
+                try {
+                    escolha = input.nextInt();
+                    input.nextLine(); // limpa o buffer
+                    break; // se chegou aqui, a entrada foi numérica válida, pode sair do loop
+                } catch (Exception e) {
+                    System.out.println("::   Entrada inválida! Digite apenas números inteiros   ::");
+                    input.nextLine(); // limpa o que foi digitado (evita loop infinito)
+                }
+            }
+            
             switch (escolha) {
                 case 1 -> { // Criar tarefas
                     System.out.println("\n============ Criar Tarefas ============");
@@ -48,7 +69,7 @@ public class GerenciAll {
                         }
                     }
 
-                    System.out.println("Status:\n[1] A fazer\n[2] Fazendo\n[3] Feito");
+                    System.out.println("Status: [1] A fazer [2] Fazendo [3] Feito");
                     System.out.print(">> Escolha: ");
                     int status = input.nextInt();
                     input.nextLine();
@@ -63,22 +84,33 @@ public class GerenciAll {
                     System.out.println("\n========== Tarefas Registradas ==========");
                     if (listaTarefas.isEmpty()) {
                         System.out.println("Nenhuma tarefa registrada.");
+                        System.out.println("=========================================");
+                        System.out.println("Press Enter");
+                        input.nextLine();
                     } else {
                         for (int i = 0; i < listaTarefas.size(); i++) {
                             System.out.println("\n[" + (i + 1) + "]\n" + listaTarefas.get(i));
                         } //for
+                        System.out.println("=========================================");
+                        System.out.println("\n=-----=[   Sistema GerenciALL   ]=-----=");
+                        System.out.println(":: Selecione uma opção abaixo ::");
+                        System.out.println("\n[1] Filtrar\n[2] Editar\n[3] Excluir");
+                        System.out.print(">> Escolha: ");
+                        input.nextLine();
+
                     }//else if
                 }//case
 
                 case 3 -> { // Fazer tarefa
                     System.out.println("\n========== Fazer Tarefa ==========");
                     if (listaTarefas.isEmpty()) {
-                        System.out.println("Nenhuma tarefa para atualizar.");
+                        System.out.println("Nenhuma tarefa para atualizar.\n");
                     } else {
                         System.out.println("Qual tarefa deseja atualizar?");
                         for (int i = 0; i < listaTarefas.size(); i++) {
                             System.out.println("[" + (i + 1) + "] " + listaTarefas.get(i).getTitulo());
                         }
+
                         System.out.print(">> Escolha: ");
                         int index = input.nextInt() - 1;
 
@@ -92,11 +124,7 @@ public class GerenciAll {
                     }
                 }
 
-                case 4 ->{ //Ver calendário
-                    System.out.println("====== Calendário ======");
-                }
-
-                case 5 -> { //Sair do programa
+                case 4 -> { //Sair do programa
                     System.out.println("Saindo...");
                     rodando = false;
                 }
