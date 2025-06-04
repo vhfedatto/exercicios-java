@@ -3,6 +3,7 @@ import java.time.format.DateTimeFormatter;
 import java.time.format.DateTimeParseException;
 import java.util.ArrayList;
 import java.util.Comparator;
+import java.util.List;
 import java.util.Scanner;
 
 public class GerenciALL {
@@ -92,9 +93,16 @@ public class GerenciALL {
                     }
                     
                     Tarefa nova = new Tarefa(titulo, descricao, data, status);
-                    listaTarefas.add(nova);
+                    
+                    if (tarefaJaExiste(listaTarefas, nova)) {
+                        System.out.println("::    Já existe uma tarefa com os mesmos dados!    ::");
+                        System.out.println("::     Pressione Enter para voltar...     ::");
+                        input.nextLine();
 
-                    System.out.println("\nTarefa criada com sucesso!");
+                    } else {
+                        listaTarefas.add(nova);
+                        System.out.println(">>   Tarefa adicionada com sucesso!   <<");
+                    }
                 }
 
                 case 2 -> { // Gerenciar tarefas --> Filtrar, Pesquisar, Editar e Excluir
@@ -109,9 +117,21 @@ public class GerenciALL {
                         input.nextLine();
                     
                     }else{
-                        // Exibir lista de tarefas
+                        System.out.printf("\n%-4s | %-20s | %-10s | %-10s\n", "ID", "Título", "Data", "Status");
+                        System.out.println("-----------------------------------------------------------------");
+
                         for (int i = 0; i < listaTarefas.size(); i++) {
-                            System.out.println("\n[" + (i + 1) + "]\n" + listaTarefas.get(i));
+                            Tarefa t = listaTarefas.get(i);
+                            // Primeira linha: ID, título, data e status
+                            System.out.printf("[%1d]  | %-20s | %-10s | %-10s\n",
+                                (i + 1),
+                                limitar(t.getTitulo(), 20),
+                                t.getDataValidade().format(DateTimeFormatter.ofPattern("dd-MM-yyyy")),
+                                t.getStatus()
+                            );
+                            // Segunda linha: descrição com recuo
+                            System.out.println(">> Descrição: "+limitar(t.getDescricao(), 60));
+                            System.out.println("");
                         }
 
                         System.out.println("\n=================================================================");
@@ -383,4 +403,22 @@ public class GerenciALL {
         }
         input.close();
     }//main
+
+    // Método auxiliar para cortar textos longos
+    private static String limitar(String texto, int limite) {
+        return texto.length() <= limite ? texto : texto.substring(0, limite - 3) + "...";
+    }
+
+    // Método auxiliar para evitar duplicação de tarefas
+    private static boolean tarefaJaExiste(List<Tarefa> lista, Tarefa nova) {
+        for (Tarefa t : lista) {
+            if (t.getTitulo().equalsIgnoreCase(nova.getTitulo()) &&
+                t.getDescricao().equalsIgnoreCase(nova.getDescricao()) &&
+                t.getStatus().equalsIgnoreCase(nova.getStatus()) &&
+                t.getDataValidade().equals(nova.getDataValidade())) {
+                return true;
+            }
+        }
+        return false;
+    }
 }//import
