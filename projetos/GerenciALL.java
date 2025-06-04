@@ -200,7 +200,7 @@ public class GerenciALL {
                                         System.out.print("\nDigite o número da tarefa que deseja editar (ou 'sair'): ");
                                         String entrada = input.nextLine().trim();
 
-                                        if (entrada.equalsIgnoreCase("sair")) return;
+                                        if (entrada.equalsIgnoreCase("sair")) break;
 
                                         try {
                                             int indice = Integer.parseInt(entrada) - 1;
